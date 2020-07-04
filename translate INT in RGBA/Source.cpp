@@ -12,7 +12,7 @@ int main()
   int bifore = 104358, after = 0;
   while (true) {
     for (int i = 0; i < 8; i++) {//R - шифрование
-      r[i] = bifore % 2;
+      r[i] = bifore % 2; 
       bifore = bifore / 2 - r[i];
     }
     rgba[0][0] = r[0] + (r[1] * 2) + (r[2] * 4) + (r[3] * 8) + (r[4] * 16) + (r[5] * 32) + (r[6] * 64) + (r[7] * 128);//запись в R
