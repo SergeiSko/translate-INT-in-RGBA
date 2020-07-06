@@ -9,8 +9,12 @@ int main()
 {
   //11001011110100110
   char endP;
-  short rgba[4][100000], rgbaFirst[32], r[8], g[8], b[8], a[8];
-  int bifore = 104358, after = 0, length=0;
+  short rgba[4][100000], rgbaFirst[32];
+  int r[8] = { 7,7,7,7,7,7,7,7 };
+  int g[8] = { 7,7,7,7,7,7,7,7 };
+  int b[8] = { 7,7,7,7,7,7,7,7 };
+  int a[8] = { 7,7,7,7,7,7,7,7 };
+  int bifore = 104358, after = 0, length=1, temp;
   while (true) {
     for (int i = 0; i < 32; i++) {//перевод в из 10х в 2х
       if (bifore != 0) length++;
@@ -21,23 +25,55 @@ int main()
     else {
       for (int i = 0; i < 8; i++)
       {
-        r[i] = rgbaFirst[--length];
-        printf("%d", rgbaFirst[--length]);
+        length--;
+        if (length > 0) {
+          r[i] = rgbaFirst[length];
+          printf("%d", rgbaFirst[length]);
+        }
+        else
+        {
+          r[i] = 7;
+          printf("%d", 7);
+        }
       }
       for (int i = 0; i < 8; i++)
       {
-        g[i] = rgbaFirst[--length];
-        printf("%d", rgbaFirst[--length]);
+        length--;
+        if (length > 0) {
+          g[i] = rgbaFirst[length];
+          printf("%d", rgbaFirst[length]);
+        }
+        else
+        {
+          g[i] = 7;
+          printf("%d", 7);
+        }
       }
       for (int i = 0; i < 8; i++)
       {
-        b[i] = rgbaFirst[--length];
-        printf("%d", rgbaFirst[--length]);
+        length--;
+        if (length > 0) {
+          b[i] = rgbaFirst[length];
+          printf("%d", rgbaFirst[length]);
+        }
+        else
+        {
+          b[i] = 7;
+          printf("%d", 7);
+        }
       }
       for (int i = 0; i < 8; i++)
       {
-        a[i] = rgbaFirst[--length];
-        printf("%d", rgbaFirst[--length]);
+        length--;
+        if (length > 0) {
+          a[i] = rgbaFirst[length];
+          printf("%d", rgbaFirst[length]);
+        }
+        else
+        {
+          a[i] = 7;
+          printf("%d", 7);
+        }
       }
 
       printf("\n");
