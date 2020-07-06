@@ -7,74 +7,59 @@
 
 int main()
 {
+  //11001011110100110
   char endP;
-  short rgba[4][100000], r[8], g[8], b[8], a[8];
-  int bifore = 104358, after = 0;
+  short rgba[4][100000], rgbaFirst[32], r[8], g[8], b[8], a[8];
+  int bifore = 104358, after = 0, length=0;
   while (true) {
-    for (int i = 0; i < 8; i++) {//R - шифрование
-      r[i] = bifore % 2; 
-      bifore = bifore / 2 - r[i];
+    for (int i = 0; i < 32; i++) {//перевод в из 10х в 2х
+      if (bifore != 0) length++;
+      rgbaFirst[i] = bifore % 2;
+      bifore = (bifore - rgbaFirst[i]) / 2;
     }
-    rgba[0][0] = r[0] + (r[1] * 2) + (r[2] * 4) + (r[3] * 8) + (r[4] * 16) + (r[5] * 32) + (r[6] * 64) + (r[7] * 128);//запись в R
-    for (int i = 0; i < 8; i++) {//G - шифрование
-      r[i] = bifore % 2;
-      bifore = bifore / 2 - r[i];
-    }
-    rgba[1][0] = r[0] + (r[1] * 2) + (r[2] * 4) + (r[3] * 8) + (r[4] * 16) + (r[5] * 32) + (r[6] * 64) + (r[7] * 128);//запись в G
-    for (int i = 0; i < 8; i++) {//B - шифрование
-      r[i] = bifore % 2;
-      bifore = bifore / 2 - r[i];
-    }
-    rgba[2][0] = r[0] + (r[1] * 2) + (r[2] * 4) + (r[3] * 8) + (r[4] * 16) + (r[5] * 32) + (r[6] * 64) + (r[7] * 128);//запись в B
-    for (int i = 0; i < 8; i++) {//A - шифрование
-      r[i] = bifore % 2;
-      bifore = bifore / 2 - r[i];
-    }
-    rgba[3][0] = r[0] + (r[1] * 2) + (r[2] * 4) + (r[3] * 8) + (r[4] * 16) + (r[5] * 32) + (r[6] * 64) + (r[7] * 128);//запись в A
-
     if (rgba[0][0] > 255 || rgba[1][0] > 255 || rgba[2][0] > 255 || rgba[3][0] > 255) { printf("Error!!! Durak! Memory!!!"); }
     else {
-      for (int i = 0; i < 4; i++) {//Вывод
-        printf("[%d] - ", i + 1);
+      for (int i = 0; i < 8; i++)
+      {
+        r[i] = rgbaFirst[--length];
+        printf("%d", rgbaFirst[--length]);
+      }
+      for (int i = 0; i < 8; i++)
+      {
+        g[i] = rgbaFirst[--length];
+        printf("%d", rgbaFirst[--length]);
+      }
+      for (int i = 0; i < 8; i++)
+      {
+        b[i] = rgbaFirst[--length];
+        printf("%d", rgbaFirst[--length]);
+      }
+      for (int i = 0; i < 8; i++)
+      {
+        a[i] = rgbaFirst[--length];
+        printf("%d", rgbaFirst[--length]);
+      }
+
+      printf("\n");
+      if(false)//RGBA пока не готов
+      for(int i = 0; i < 1; i++)
+      for (int i = 0; i < 4; i++) {//Вывод RGBA массива
+        printf("[%d]: ", i + 1);
         printf("%d\n", rgba[i][0]);
       }
     }
     if (false) {
-      for (int i = 0; i < 8; i++) {
-        printf("%d ", r[i]);
-      }
-      printf("\n");
-      for (int i = 0; i < 8; i++) {
-        printf("%d ", g[i]);
-      }
-      printf("\n");
-      for (int i = 0; i < 8; i++) {
-        printf("%d ", b[i]);
-      }
-      printf("\n");
-      for (int i = 0; i < 8; i++) {
-        printf("%d ", a[i]);
+      for (int i = 0; i < 32; i++) {
+        printf("%d ", rgbaFirst[i]);
       }
       printf("\n");
     }
 
     if (false)
     {
-      for (int i = 0; i < 8; i++) {
-        after += pow(2 * r[7 - i], i);
-        printf("r[%d] = %d\n", i, pow(2 * r[7 - i], i));
-      }
-      for (int i = 0; i < 8; i++) {
-        after += pow(2 * g[7 - i], i * 2);
-        printf("r[%d] = %d\n", i, pow(2 * g[7 - i], i * 2));
-      }
-      for (int i = 0; i < 8; i++) {
-        after += pow(2 * b[7 - i], i * 3);
-        printf("r[%d] = %d\n", i, pow(2 * b[7 - i], i * 3));
-      }
-      for (int i = 0; i < 8; i++) {
-        after += pow(2 * a[7 - i], i * 4);
-        printf("r[%d] = %d\n", i, pow(2 * a[7 - i], i * 4));
+      for (int i = 0; i < 32; i++) {
+        after += pow(2 * rgbaFirst[7 - i], i);
+        printf("r[%d] = %d\n", i, pow(2 * rgbaFirst[7 - i], i));
       }
     }
 
